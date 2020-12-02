@@ -27,9 +27,10 @@ jsonData.lessons.forEach((x, index) => {
         ytEmbed = 'https://www.youtube-nocookie.com/embed/' + ytCode + '?start=0',
         filename = (index+1) + '.md', // TODO: later probably add padding to number??
         zzz;
-    temp = zdata.replace(/\{TITLE\}/g, title);
-    temp = zdata.replace(/\{VID\}/g, ytCode);
-    temp = zdata.replace(/\{YT\}/g, yt);
+    temp = zdata;
+    temp = temp.replace(/\{TITLE\}/g, title);
+    temp = temp.replace(/\{VID\}/g, ytCode);
+    temp = temp.replace(/\{YT\}/g, yt);
     // console.log([x, index, title, yt, ytCode])
 
     fs.writeFile(filename, temp, (err) => {
