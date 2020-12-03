@@ -1,4 +1,4 @@
-# Welcome to Arabic shared resources
+# Arabic Resources
 
 Intent is to share beneficial resources for students of Arabic.
 
@@ -10,6 +10,8 @@ Intent is to share beneficial resources for students of Arabic.
 
 ## Credit
 
-    All the credit belongs to respective content creators (prominently, Al Qalam institute, Shaykh Hashim) who have selflessly shared these resources openly on youtube, dropbox etc. 
-    This site is just a mashup of these resources. Any site mistakes are mine. 
+    All the credit belongs to respective content creators (prominently, Al Qalam institute, Shaykh Hashim) 
+    who have selflessly shared these resources openly on youtube, dropbox etc. 
+
+    This site is just a mashup of these resources. Any site mistakes are ours. 
     See upcoming Credits page for full credits.
