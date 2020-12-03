@@ -7,15 +7,15 @@ let sarf = require('./sarf.json');
 
 let jsonData = {
     // balagha,
-    // nahw,
-    sarf,
+    nahw,
+    // sarf,
 };
 
 // Support multiple collections of data
 var collections = [
     // 'balagha',
-    // 'nahw',
-    'sarf',
+    'nahw',
+    // 'sarf',
 ];
 
 /// let data = JSON.stringify(jsonData, null, 2);
