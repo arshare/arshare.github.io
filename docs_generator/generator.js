@@ -67,7 +67,7 @@ collections.forEach((collection, n) => {
         var temp,
             lesson = jsonData[ collection ].lessons[index],
             title = lesson.title,
-            yts = !lesson.yt ? [] : ( !Array.isArray(lesson.yt) ? [ lesson.yt ] : lesson.yt ), 
+            yts = !lesson.yt ? ( !lesson.id ? [] : [ lesson.id ] ) : ( !Array.isArray(lesson.yt) ? [ lesson.yt ] : lesson.yt ), 
             ytCodes = [],
             filenameNoExt = (index+1), // TODO: later probably add padding to number??
             padLength = getPadLength( jsonData[ collection ] ),
