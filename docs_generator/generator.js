@@ -4,18 +4,21 @@ const fs = require('fs');
 let balagha = require('./balagha.json');
 let nahw = require('./nahw.json');
 let sarf = require('./sarf.json');
+let qisas = require('./qisas.json');
 
 let jsonData = {
     // balagha,
-    nahw,
+    // nahw,
     // sarf,
+    qisas,
 };
 
 // Support multiple collections of data
 var collections = [
     // 'balagha',
-    'nahw',
+    // 'nahw',
     // 'sarf',
+    'qisas',
 ];
 
 /// let data = JSON.stringify(jsonData, null, 2);
@@ -68,7 +71,8 @@ collections.forEach((collection, n) => {
             ytCodes = [],
             filenameNoExt = (index+1), // TODO: later probably add padding to number??
             padLength = getPadLength( jsonData[ collection ] ),
-            filename = '../docs/'+ collection +'/'+ pad(filenameNoExt, padLength) + '.md',
+            filepath = '../docs/'+ collection +'/',
+            filename = filepath + pad(filenameNoExt, padLength) + '.md',
             zzz;
         temp = zdata_yt_title.replace(/\{TITLE\}/g, title);
         yts.forEach((yt) => { if(!yt){ ytCodes.push(null); return; }
@@ -91,6 +95,7 @@ collections.forEach((collection, n) => {
             temp += zdata_yt_link.replace(/\{YT\}/g, yt);
         });
 
+        fs.mkdirSync(filepath, {recursive:true});
         fs.writeFile(filename, temp, (err) => {
             if (err) throw err;
             console.log(filename + ': Data written to file');
