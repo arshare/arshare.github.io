@@ -92,7 +92,8 @@ collections.forEach((collection, n) => {
         temp += zdata_resources;
         temp += zdata_slide;
         yts.forEach((yt) => {
-            temp += zdata_yt_link.replace(/\{YT\}/g, yt);
+            var ytLink = yt.indexOf('/') !== -1 ? yt : ('https://youtu.be/' + yt);
+            temp += zdata_yt_link.replace(/\{YT\}/g, ytLink);
         });
 
         fs.mkdirSync(filepath, {recursive:true});
