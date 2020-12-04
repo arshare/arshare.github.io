@@ -8,18 +8,28 @@ let qisas = require('./qisas.json');
 
 let jsonData = {
     balagha,
-    // nahw,
-    // sarf,
-    // qisas,
+    nahw,
+    sarf,
+    qisas,
 };
 
 // Support multiple collections of data
 var collections = [
     'balagha',
-    // 'nahw',
-    // 'sarf',
-    // 'qisas',
+    'nahw',
+    'sarf',
+    'qisas',
 ];
+
+var resources_repos = {
+    pdfs: [
+        'https://arshare.github.io/resources_balagha_pdfs/',
+        'https://arshare.github.io/resources_hidayatunnahw_pdfs/',
+    ],
+    mp3s: [
+        'https://arshare.github.io/resources_sarf_mp3/'
+    ],
+}
 
 /// let data = JSON.stringify(jsonData, null, 2);
 
@@ -107,7 +117,9 @@ collections.forEach((collection, n) => {
             yts = !lesson.yt ? ( !lesson.id ? [] : [ lesson.id ] ) : ( !Array.isArray(lesson.yt) ? [ lesson.yt ] : lesson.yt ), 
             ytCodes = [],
             pdf = lesson.slides,
-            pdfLink = !pdf ? null : ('https://arshare.github.io/resources_balagha_pdfs/' + pdf + ''),
+            pdfLinkPrefix = resources_repos.pdfs.find(x => x.indexOf( collection ) !== -1),
+            pdfLinkSuffix = pdf && pdf.indexOf('.pdf') !== -1 ? '' : '.pptx.pdf',
+            pdfLink = (!pdf || !pdfLinkPrefix) ? null : (pdfLinkPrefix + pdf + pdfLinkSuffix),
             filenameNoExt = (index+1), // TODO: later probably add padding to number??
             padLength = getPadLength( jsonData[ collection ] ),
             filepath = '../docs/'+ collection +'/',
