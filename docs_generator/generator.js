@@ -7,18 +7,18 @@ let sarf = require('./sarf.json');
 let qisas = require('./qisas.json');
 
 let jsonData = {
-    // balagha,
+    balagha,
     // nahw,
     // sarf,
-    qisas,
+    // qisas,
 };
 
 // Support multiple collections of data
 var collections = [
-    // 'balagha',
+    'balagha',
     // 'nahw',
     // 'sarf',
-    'qisas',
+    // 'qisas',
 ];
 
 /// let data = JSON.stringify(jsonData, null, 2);
@@ -27,9 +27,46 @@ let zdata_yt_title = '# {TITLE}\n\n';
 let zdata_yt_iframe = `\
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/{VID}?start=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe><BR>\n\n\
 `;
-let zdata_resources = '\n\n## Resources:\n';
-let zdata_slide = '- [Slides](https://github.com/arshare/resources_balagha_pdfs)\n';
+let zdata_pdf_embed = `\
+<h2>Slides</h2>
+<div>
+    <object
+    data='{PDF}'
+    type="application/pdf"
+    width="560"
+    height="315"
+    >
+    <iframe
+        src='{PDF}'
+        width="500"
+        height="315"
+    >
+    <p>This browser does not support PDF!</p>
+    </iframe>
+    </object>
+</div>
+<A HREF='{PDF}' target=_>(Open in new window)</A>
+`;
+let zdata_resources = `\
+<BR><BR>
+## Resources:
+Direct links to:
+`;
+let zdata_slide = '- [Slides]({PDF})\n';
 let zdata_yt_link = '- [Youtube video]({YT})\n';
+let zdata_resources_end = `\
+<BR><BR>
+## Credits:
+All Videos & Slides are provided selflessly by AlQalam Institute's Shaykh Hashim.
+- [Al Qalam Institute website](https://www.alqalaminstitute.org/)
+- [Al Qalam Youtube](https://www.youtube.com/c/AlQalamInstitute/playlists)
+- [- YT playlist - Duroosul Balagha](https://www.youtube.com/watch?v=cZsrvqzphNk&list=PLzn0qdi6JpdvvXVuJ7kIusNquSxeyKJvc)
+- [- YT playlist - Hidayatun Nahw](https://www.youtube.com/playlist?list=PLzn0qdi6JpdtdAyaM2yvvY1Yk9i4EpLHD)
+- [- YT playlist - Qisas](https://www.youtube.com/watch?v=bXdYFJm4eAE&list=PLzn0qdi6JpduA_Vp7eglKKs8eDGjqYdd3)
+- [- YT playlist - Sarf](https://www.youtube.com/watch?v=FEPiOBUYlLw&list=PLzn0qdi6JpdvWf0IDGNfaiM-okPqDuQoc)
+- [Link to AlQalam Resources](https://www.alqalaminstitute.org/resources)
+- [Link to AlQalam Dropbox](https://www.dropbox.com/sh/vtojey2cm76xvyr/AAC-M3mnMaHkYLGxQCvmEiLga?dl=0)
+`;
 
 function stitchData(){
 
@@ -69,6 +106,8 @@ collections.forEach((collection, n) => {
             title = lesson.title,
             yts = !lesson.yt ? ( !lesson.id ? [] : [ lesson.id ] ) : ( !Array.isArray(lesson.yt) ? [ lesson.yt ] : lesson.yt ), 
             ytCodes = [],
+            pdf = lesson.slides,
+            pdfLink = !pdf ? null : ('https://arshare.github.io/resources_balagha_pdfs/' + pdf + ''),
             filenameNoExt = (index+1), // TODO: later probably add padding to number??
             padLength = getPadLength( jsonData[ collection ] ),
             filepath = '../docs/'+ collection +'/',
@@ -89,12 +128,14 @@ collections.forEach((collection, n) => {
         ytCodes.forEach((ytCode) => {
             temp += zdata_yt_iframe.replace(/\{VID\}/g, ytCode);
         });
+        if(pdfLink) temp += zdata_pdf_embed.replace(/\{PDF\}/g, pdfLink);
         temp += zdata_resources;
-        temp += zdata_slide;
+        if(pdfLink) temp += zdata_slide.replace(/\{PDF\}/g, pdfLink);
         yts.forEach((yt) => {
             var ytLink = yt.indexOf('/') !== -1 ? yt : ('https://youtu.be/' + yt);
             temp += zdata_yt_link.replace(/\{YT\}/g, ytLink);
         });
+        temp += zdata_resources_end;
 
         fs.mkdirSync(filepath, {recursive:true});
         fs.writeFile(filename, temp, (err) => {
