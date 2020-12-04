@@ -1,0 +1,17 @@
+Path ahead:
+- Fix PDF embed in Mobile. 
+
+- for HN: Book pages in separate tab
+- for HN: summary in separate tab
+- for Sarf: recordings, game - pages or in tabs. 
+
+Minor:
+- Use vertical accordions to separate multiple YT vids
+
+Cosmetic:
+- On homepage, add Qisas to list of 3. Also, link those to 1st lessons.  
+    https://arshare.github.io/balagha/001/
+    https://arshare.github.io/nahw/01/
+    https://arshare.github.io/qisas/01/
+    https://arshare.github.io/sarf/01/
+

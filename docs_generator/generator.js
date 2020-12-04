@@ -55,8 +55,17 @@ let zdata_pdf_embed = `\
     </iframe>
     </object>
 </div>
-<A HREF='{PDF}' target=_>(Open in new window)</A>
+<A HREF='{PDF}' target=_>(Open in new window)</A>\n<BR><BR>
 `;
+
+let zdata_book_images_header = `\
+<H2>Book Images:</H2>\n`;
+let zdata_book_images = `\
+<IMG SRC='https://arshare.github.io/resources_hidayatunnahw_book_images/{IMG}.png' class=bookpage style="max-width: 30%;">&nbsp;&nbsp;`;
+// ex: <img src="https://raw.githubusercontent.com/hnshare/hn-data-classic-annotated-more/main/007.png" class="bookpage">
+let zdata_book_images_footer = `\
+<BR>(to enlarge, right click image & open in new window)`;
+
 let zdata_resources = `\
 <BR><BR>
 ## Resources:
@@ -120,6 +129,7 @@ collections.forEach((collection, n) => {
             pdfLinkPrefix = resources_repos.pdfs.find(x => x.indexOf( collection ) !== -1),
             pdfLinkSuffix = pdf && pdf.indexOf('.pdf') !== -1 ? '' : '.pptx.pdf',
             pdfLink = (!pdf || !pdfLinkPrefix) ? null : (pdfLinkPrefix + pdf + pdfLinkSuffix),
+            bookpage = lesson.page,
             filenameNoExt = (index+1), // TODO: later probably add padding to number??
             padLength = getPadLength( jsonData[ collection ] ),
             filepath = '../docs/'+ collection +'/',
@@ -141,6 +151,17 @@ collections.forEach((collection, n) => {
             temp += zdata_yt_iframe.replace(/\{VID\}/g, ytCode);
         });
         if(pdfLink) temp += zdata_pdf_embed.replace(/\{PDF\}/g, pdfLink);
+        if(bookpage){
+            temp += zdata_book_images_header;
+            var pagesCount = jsonData[ collection ].lessons.length - 1;
+            var bookpageNext = index >= pagesCount ? bookpage : jsonData[ collection ].lessons[index + 1].page;
+            for(var i = parseInt(bookpage); i <= parseInt(bookpageNext); ++i){
+                temp += zdata_book_images.replace(/\{IMG\}/g, pad( i ));
+            }
+            temp += zdata_book_images_footer;
+        }
+
+        // now the resources...
         temp += zdata_resources;
         if(pdfLink) temp += zdata_slide.replace(/\{PDF\}/g, pdfLink);
         yts.forEach((yt) => {
