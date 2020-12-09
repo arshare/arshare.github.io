@@ -18,5 +18,5 @@ Intent is to share beneficial resources for all students of Arabic.
     See upcoming Credits page for full credits.
 
 ## Contact Us
-Suggestions, Feedback, Bug reports welcome! :) Send them to: <i> arshare [at] gmx [dot] com </i>.
+Suggestions, Feedback, Bug reports welcome! :) Send them to: <i> arshare [at] gmx [dot] com </i>.<BR>
 (Content updated often; if you see issues, try reloading the page in your browser.)
