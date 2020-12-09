@@ -127,7 +127,7 @@ collections.forEach((collection, n) => {
             ytCodes = [],
             pdf = lesson.slides,
             pdfLinkPrefix = resources_repos.pdfs.find(x => x.indexOf( collection ) !== -1),
-            pdfLinkSuffix = pdf && pdf.indexOf('.pdf') !== -1 ? '' : '.pptx.pdf',
+            pdfLinkSuffix = pdf && pdf.indexOf('.pdf') !== -1 ? '' : '.pdf',
             pdfLink = (!pdf || !pdfLinkPrefix) ? null : (pdfLinkPrefix + pdf + pdfLinkSuffix),
             bookpage = lesson.page,
             filenameNoExt = (index+1), // TODO: later probably add padding to number??

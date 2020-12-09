@@ -1,12 +1,13 @@
 # Arabic Resources
 
-Intent is to share beneficial resources for students of Arabic.
+Intent is to share beneficial resources for all students of Arabic.
 
 ## Content
 
-* `Balagha` - content from Duroosul Balagha book.
-* `Nahw` - content from Hidayatun Nahw book.
-* `Sarf` - content related to Sarf; practice & test your sarf skills.
+* [`Balagha`](./balagha/) - content from Duroosul Balagha book.
+* [`Nahw`](./nahw/) - content from Hidayatun Nahw book.
+* [`Sarf`](./sarf/) - content related to Sarf; practice & test your sarf skills.
+* [`Qisas`](./qisas/) - content related to Qisas-ul-Anbiya book.
 
 ## Credit
 
@@ -15,3 +16,7 @@ Intent is to share beneficial resources for students of Arabic.
 
     This site is just a mashup of these resources. Any site mistakes are ours. 
     See upcoming Credits page for full credits.
+
+## Contact Us
+Suggestions, Feedback, Bug reports welcome! :) Send them to: <i> arshare [at] gmx [dot] com </i>.
+(Content updated often; if you see issues, try reloading the page in your browser.)
